@@ -2,11 +2,18 @@
   "info": {
     "name": "TeamBoard",
     "description": "Run top to bottom. Requests 1 and 3 capture the JWT into {{access_token}} automatically. Before request 11, manually set the acmecorp company's role to 'admin' in the database, then re-run request 3 (Login) to refresh the token, then run request 11.",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_postman_id": "cfb420a1-e129-4b97-9b7c-c4fca6fa41ae"
   },
   "variable": [
-    { "key": "base_url", "value": "http://127.0.0.1:8000" },
-    { "key": "access_token", "value": "" }
+    {
+      "key": "base_url",
+      "value": "http://127.0.0.1:8000"
+    },
+    {
+      "key": "access_token",
+      "value": ""
+    }
   ],
   "item": [
     {
@@ -25,31 +32,83 @@
       ],
       "request": {
         "method": "POST",
-        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"username\": \"acmecorp\",\n  \"password\": \"securepass123\",\n  \"company_name\": \"Acme Corp\",\n  \"email\": \"dev@acmecorp.com\"\n}"
+          "raw": "{\n  \"username\": \"acmecorp\",\n  \"password\": \"securepass123\",\n  \"company_name\": \"Acme Corp\",\n  \"email\": \"dev@acmecorp.com\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
         },
-        "url": { "raw": "{{base_url}}/api/auth/register/", "host": ["{{base_url}}"], "path": ["api", "auth", "register", ""] }
-      }
+        "url": {
+          "raw": "{{base_url}}/api/auth/register/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "auth",
+            "register",
+            ""
+          ]
+        }
+      },
+      "id": "e44a4e53-f069-4788-8f2f-6e9c3924f416",
+      "response": []
     },
     {
       "name": "2. Register - Duplicate Username",
       "event": [
         {
           "listen": "test",
-          "script": { "exec": ["pm.test('Status is 400', function () { pm.response.to.have.status(400); });"] }
+          "script": {
+            "exec": [
+              "pm.test('Status is 400', function () { pm.response.to.have.status(400); });"
+            ]
+          }
         }
       ],
       "request": {
         "method": "POST",
-        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"username\": \"acmecorp\",\n  \"password\": \"anotherpass123\",\n  \"company_name\": \"Someone Else\",\n  \"email\": \"someone@else.com\"\n}"
+          "raw": "{\n  \"username\": \"acmecorp\",\n  \"password\": \"anotherpass123\",\n  \"company_name\": \"Someone Else\",\n  \"email\": \"someone@else.com\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
         },
-        "url": { "raw": "{{base_url}}/api/auth/register/", "host": ["{{base_url}}"], "path": ["api", "auth", "register", ""] }
-      }
+        "url": {
+          "raw": "{{base_url}}/api/auth/register/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "auth",
+            "register",
+            ""
+          ]
+        }
+      },
+      "id": "2dafd94e-3ab3-4d03-b92e-9d3e9acc7add",
+      "response": []
     },
     {
       "name": "3. Login - Success",
@@ -67,46 +126,129 @@
       ],
       "request": {
         "method": "POST",
-        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"username\": \"acmecorp\",\n  \"password\": \"securepass123\"\n}"
+          "raw": "{\n  \"username\": \"acmecorp\",\n  \"password\": \"securepass123\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
         },
-        "url": { "raw": "{{base_url}}/api/auth/login/", "host": ["{{base_url}}"], "path": ["api", "auth", "login", ""] }
-      }
+        "url": {
+          "raw": "{{base_url}}/api/auth/login/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "auth",
+            "login",
+            ""
+          ]
+        }
+      },
+      "id": "4cead65c-8da1-47c7-bebc-e4adc2cfd638",
+      "response": []
     },
     {
       "name": "4. Login - Invalid Credentials",
       "event": [
         {
           "listen": "test",
-          "script": { "exec": ["pm.test('Status is 401', function () { pm.response.to.have.status(401); });"] }
+          "script": {
+            "exec": [
+              "pm.test('Status is 401', function () { pm.response.to.have.status(401); });"
+            ]
+          }
         }
       ],
       "request": {
         "method": "POST",
-        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"username\": \"acmecorp\",\n  \"password\": \"wrongpassword\"\n}"
+          "raw": "{\n  \"username\": \"acmecorp\",\n  \"password\": \"wrongpassword\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
         },
-        "url": { "raw": "{{base_url}}/api/auth/login/", "host": ["{{base_url}}"], "path": ["api", "auth", "login", ""] }
-      }
+        "url": {
+          "raw": "{{base_url}}/api/auth/login/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "auth",
+            "login",
+            ""
+          ]
+        }
+      },
+      "id": "4fcdb956-5c9f-418a-abaa-da2fca56463a",
+      "response": []
     },
     {
       "name": "5. KB Query - No Token",
       "event": [
         {
           "listen": "test",
-          "script": { "exec": ["pm.test('Status is 401', function () { pm.response.to.have.status(401); });"] }
+          "script": {
+            "exec": [
+              "pm.test('Status is 401', function () { pm.response.to.have.status(401); });"
+            ]
+          }
         }
       ],
       "request": {
         "method": "POST",
-        "header": [{ "key": "Content-Type", "value": "application/json" }],
-        "body": { "mode": "raw", "raw": "{\n  \"search\": \"select_related\"\n}" },
-        "url": { "raw": "{{base_url}}/api/kb/query/", "host": ["{{base_url}}"], "path": ["api", "kb", "query", ""] }
-      }
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"search\": \"select_related\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/api/kb/query/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "kb",
+            "query",
+            ""
+          ]
+        }
+      },
+      "id": "9670d561-2c54-4bab-b34a-d70e0b0e96b4",
+      "response": []
     },
     {
       "name": "6. KB Query - Success With Results",
@@ -124,30 +266,92 @@
       "request": {
         "method": "POST",
         "header": [
-          { "key": "Content-Type", "value": "application/json" },
-          { "key": "Authorization", "value": "Bearer {{access_token}}" }
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}",
+            "type": "text"
+          }
         ],
-        "body": { "mode": "raw", "raw": "{\n  \"search\": \"select_related\"\n}" },
-        "url": { "raw": "{{base_url}}/api/kb/query/", "host": ["{{base_url}}"], "path": ["api", "kb", "query", ""] }
-      }
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"search\": \"select_related\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/api/kb/query/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "kb",
+            "query",
+            ""
+          ]
+        }
+      },
+      "id": "d5ce241a-c08c-43af-8b35-ac3d0baaa48c",
+      "response": []
     },
     {
       "name": "7. KB Query - Missing Search Term",
       "event": [
         {
           "listen": "test",
-          "script": { "exec": ["pm.test('Status is 400', function () { pm.response.to.have.status(400); });"] }
+          "script": {
+            "exec": [
+              "pm.test('Status is 400', function () { pm.response.to.have.status(400); });"
+            ]
+          }
         }
       ],
       "request": {
         "method": "POST",
         "header": [
-          { "key": "Content-Type", "value": "application/json" },
-          { "key": "Authorization", "value": "Bearer {{access_token}}" }
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}",
+            "type": "text"
+          }
         ],
-        "body": { "mode": "raw", "raw": "{}" },
-        "url": { "raw": "{{base_url}}/api/kb/query/", "host": ["{{base_url}}"], "path": ["api", "kb", "query", ""] }
-      }
+        "body": {
+          "mode": "raw",
+          "raw": "{}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/api/kb/query/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "kb",
+            "query",
+            ""
+          ]
+        }
+      },
+      "id": "c275e9a1-92ef-4134-9571-f03657310894",
+      "response": []
     },
     {
       "name": "8. KB Query - Zero Results",
@@ -165,40 +369,109 @@
       "request": {
         "method": "POST",
         "header": [
-          { "key": "Content-Type", "value": "application/json" },
-          { "key": "Authorization", "value": "Bearer {{access_token}}" }
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}",
+            "type": "text"
+          }
         ],
-        "body": { "mode": "raw", "raw": "{\n  \"search\": \"zzz_nonexistent_term_zzz\"\n}" },
-        "url": { "raw": "{{base_url}}/api/kb/query/", "host": ["{{base_url}}"], "path": ["api", "kb", "query", ""] }
-      }
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"search\": \"zzz_nonexistent_term_zzz\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/api/kb/query/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "kb",
+            "query",
+            ""
+          ]
+        }
+      },
+      "id": "dbf99107-1a9e-4121-9eb6-a53ab8ed75e0",
+      "response": []
     },
     {
       "name": "9. Usage Summary - No Token",
       "event": [
         {
           "listen": "test",
-          "script": { "exec": ["pm.test('Status is 401', function () { pm.response.to.have.status(401); });"] }
+          "script": {
+            "exec": [
+              "pm.test('Status is 401', function () { pm.response.to.have.status(401); });"
+            ]
+          }
         }
       ],
       "request": {
         "method": "GET",
-        "url": { "raw": "{{base_url}}/api/admin/usage-summary/", "host": ["{{base_url}}"], "path": ["api", "admin", "usage-summary", ""] }
-      }
+        "url": {
+          "raw": "{{base_url}}/api/admin/usage-summary/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "admin",
+            "usage-summary",
+            ""
+          ]
+        }
+      },
+      "id": "44e38b5e-a145-4638-8205-fe9aa04736a9",
+      "response": []
     },
     {
       "name": "10. Usage Summary - Client Token Forbidden",
       "event": [
         {
           "listen": "test",
-          "script": { "exec": ["pm.test('Status is 403', function () { pm.response.to.have.status(403); });"] }
+          "script": {
+            "exec": [
+              "pm.test('Status is 403', function () { pm.response.to.have.status(403); });"
+            ]
+          }
         }
       ],
       "request": {
         "method": "GET",
-        "header": [{ "key": "Authorization", "value": "Bearer {{access_token}}" }],
-        "url": { "raw": "{{base_url}}/api/admin/usage-summary/", "host": ["{{base_url}}"], "path": ["api", "admin", "usage-summary", ""] },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/admin/usage-summary/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "admin",
+            "usage-summary",
+            ""
+          ]
+        },
         "description": "Uses the CLIENT token from request 3. Before running request 11, set this company's role to 'admin' in the database and re-run request 3 to refresh {{access_token}}."
-      }
+      },
+      "id": "921a7d0b-243e-4733-864f-a47dc785edaa",
+      "response": []
     },
     {
       "name": "11. Usage Summary - Admin Token Success",
@@ -215,10 +488,29 @@
       ],
       "request": {
         "method": "GET",
-        "header": [{ "key": "Authorization", "value": "Bearer {{access_token}}" }],
-        "url": { "raw": "{{base_url}}/api/admin/usage-summary/", "host": ["{{base_url}}"], "path": ["api", "admin", "usage-summary", ""] },
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/admin/usage-summary/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "admin",
+            "usage-summary",
+            ""
+          ]
+        },
         "description": "Run after promoting acmecorp's role to 'admin' in the database and re-running request 3 (Login) to refresh {{access_token}}."
-      }
+      },
+      "id": "12826b03-9219-4da1-a6f1-4f78ae25c2ff",
+      "response": []
     }
   ]
 }
